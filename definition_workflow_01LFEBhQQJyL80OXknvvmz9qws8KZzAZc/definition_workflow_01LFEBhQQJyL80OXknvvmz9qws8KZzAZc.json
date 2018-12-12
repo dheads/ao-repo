@@ -1,0 +1,356 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01LFEBhQQJyL80OXknvvmz9qws8KZzAZc",
+    "name": "master",
+    "title": "master",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "01L9Yp5k3DjN0uPKvvE0G2RuDR3clN07h",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "space",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01LFEQCChp1gOL2E8MI97ocUTZHcYpVxn",
+        "object_type": ""
+      },
+      {
+        "schema_id": "01L9Yp5k3DjN0uPKvvE0G2RuDR3clN07h",
+        "properties": {
+          "value": "Bret",
+          "scope": "input",
+          "name": "username",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01LFEV5WuOwlPjka5egfGSDQjjaDIBR1e",
+        "object_type": ""
+      },
+      {
+        "schema_id": "tabletype_01LFImfdI5ATMIUSMFxpc20suaMpNg1sl",
+        "properties": {
+          "value": [],
+          "scope": "local",
+          "name": "ATableByDevin",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01LFIs4nGNBm926MCKQzuTVID0CzWafyf",
+        "object_type": ""
+      },
+      {
+        "schema_id": "01L9Yp5k3DjN0uPKvvE0G2RuDR3clN07h",
+        "properties": {
+          "value": "Devin Heads",
+          "scope": "input",
+          "name": "name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01LFEN8cdNJcB50H6V4ZPBAaWmoQj8HmU",
+        "object_type": ""
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "master",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01LF3Vw7gk7x0NuhlCDTeeRb5blYdjC1w",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01LFEegig2EyWPm1q5H1C4jnE9jjKUrCb",
+        "name": "Get JSON path Holder - DevinWorkFlow !@#$%^\u0026*(*)(_)(*\u0026",
+        "title": "Get JSON path Holder - DevinWorkFlow !@#$%^\u0026*(*)(_)(*\u0026",
+        "type": "workflow.sub_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "display_name": "Get JSON path Holder - DevinWorkFlow !@#$%^\u0026*(*)(_)(*\u0026",
+          "input": {
+            "variable_workflow_01LF6eHPTv5KWHx45egxaFoH53fRf2Vq2": "user"
+          },
+          "target": {
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01LF5aUM9I442zdQfAsjVY92r6IzLqVLQ"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01LFFZnOq5mBgQyuc9c9BQoUagnSQvhCz",
+        "name": "JSONPath Query",
+        "title": "Devin JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "display_name": "Devin JSONPath Query",
+          "input_json": "$activity.definition_activity_01LFEegig2EyWPm1q5H1C4jnE9jjKUrCb.output.variable_workflow_01LF6kVpPNmbB4SDMEBAwQpP07fqoW4Zq$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.[?(@.username==(\"$workflow.definition_workflow_01LFEBhQQJyL80OXknvvmz9qws8KZzAZc.input.variable_workflow_01LFEN8cdNJcB50H6V4ZPBAaWmoQj8HmU$\"))]",
+              "jsonpath_query_name": "name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01LFGHXVTgw8MMibYrXgd55yuZYRXof8p",
+        "name": "Find String",
+        "title": "Find String",
+        "type": "core.find_string",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Find String",
+          "searched_string": "$workflow.definition_workflow_01LFEBhQQJyL80OXknvvmz9qws8KZzAZc.input.variable_workflow_01LFEV5WuOwlPjka5egfGSDQjjaDIBR1e$",
+          "source": "$activity.definition_activity_01LFFZnOq5mBgQyuc9c9BQoUagnSQvhCz.output.jsonpath_queries.name$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01LFGgwq4LlvDq31LniKTTMt8sVv7U824",
+        "name": "Condition Block",
+        "title": "IFUserFound",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "IFUserFound"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01LFGh0DvlJ7paOzHuAQIzCB1vRwVAgsg",
+            "name": "Condition Branch",
+            "title": "Then",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01LFGHXVTgw8MMibYrXgd55yuZYRXof8p.output.has_match$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "display_name": "Then"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01LFItBvZXytFfK2aXpGIn070gqPIVkEP",
+                "name": "Add Row to Table",
+                "title": "Add Row to Table",
+                "type": "core.addrowtotable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "display_name": "Add Row to Table",
+                  "input_table": "$workflow.definition_workflow_01LFEBhQQJyL80OXknvvmz9qws8KZzAZc.local.variable_workflow_01LFIs4nGNBm926MCKQzuTVID0CzWafyf$",
+                  "row": [
+                    {
+                      "key": "Name",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01LFGh0tkijkAKqQkbvX3oO3I1HRfeuNe",
+            "name": "Condition Branch",
+            "title": "Else",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01LFGHXVTgw8MMibYrXgd55yuZYRXof8p.output.has_match$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "display_name": "Else"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01LF2TsfxIxceLWHqWmKH4tOZBahepmLu"
+    ]
+  },
+  "categories": {
+    "category_01LF2TsfxIxceLWHqWmKH4tOZBahepmLu": {
+      "unique_name": "category_01LF2TsfxIxceLWHqWmKH4tOZBahepmLu",
+      "name": "DevinIsGreatCat",
+      "title": "DevinIsGreatCat",
+      "type": "basic.category",
+      "base_type": "category",
+      "description": "Devin is Great Category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01LF3Vw7gk7x0NuhlCDTeeRb5blYdjC1w": {
+      "unique_name": "definition_target_01LF3Vw7gk7x0NuhlCDTeeRb5blYdjC1w",
+      "name": "JSon Something",
+      "title": "JSon Something",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "description": "Json path",
+        "disable_certificate_validation": true,
+        "display_name": "JSon Something",
+        "host": "jsonplaceholder.typicode.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "table_types": {
+    "tabletype_01LFImfdI5ATMIUSMFxpc20suaMpNg1sl": {
+      "unique_name": "tabletype_01LFImfdI5ATMIUSMFxpc20suaMpNg1sl",
+      "data_type": "datatype.tabletype",
+      "display_name": "DevinTable",
+      "description": "Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "Name",
+          "title": "This Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "subworkflows": [
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01LF5aUM9I442zdQfAsjVY92r6IzLqVLQ",
+        "name": "Get JSON path Holder - DevinWorkFlow !@#$%^\u0026*(*)(_)(*\u0026",
+        "title": "Get JSON path Holder - DevinWorkFlow !@#$%^\u0026*(*)(_)(*\u0026",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "01L9Yp5k3DjN0uPKvvE0G2RuDR3clN07h",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "outputjson",
+              "type": "datatype.string"
+            },
+            "unique_name": "variable_workflow_01LF6kVpPNmbB4SDMEBAwQpP07fqoW4Zq",
+            "object_type": ""
+          },
+          {
+            "schema_id": "01L9Yp23HJJ8akR6jRY2cehSNIZ2Yt851",
+            "properties": {
+              "scope": "output",
+              "name": "statuscode",
+              "type": "datatype.integer"
+            },
+            "unique_name": "variable_workflow_01LF6o8ROQ5c2TvkU5KJvHYZ0s5gmKPKB",
+            "object_type": ""
+          },
+          {
+            "schema_id": "01L9Yp5k3DjN0uPKvvE0G2RuDR3clN07h",
+            "properties": {
+              "value": "posts",
+              "scope": "input",
+              "name": "Path",
+              "type": "datatype.string",
+              "description": "This is a String"
+            },
+            "unique_name": "variable_workflow_01LF6eHPTv5KWHx45egxaFoH53fRf2Vq2",
+            "object_type": ""
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "description": "My Stuff",
+          "display_name": "Get JSON path Holder - DevinWorkFlow !@#$%^\u0026*(*)(_)(*\u0026",
+          "favorite": false,
+          "target": {
+            "target_type": "web-service.endpoint",
+            "specify_on_workflow_start": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01LF8RO7BgkwfpFR5X4XMrDUviRSWg5um",
+            "name": "HTTP Request",
+            "title": "DEVIN JSON ",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "display_name": "DEVIN JSON ",
+              "method": "GET",
+              "relative_url": "$workflow.definition_workflow_01LF5aUM9I442zdQfAsjVY92r6IzLqVLQ.input.variable_workflow_01LF6eHPTv5KWHx45egxaFoH53fRf2Vq2$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01LF9isIWvVM5BIHXKgi4iv0N795cGZVN",
+            "name": "Set Variables",
+            "title": "SetOutput",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "SetOutput",
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01LF5aUM9I442zdQfAsjVY92r6IzLqVLQ.output.variable_workflow_01LF6kVpPNmbB4SDMEBAwQpP07fqoW4Zq$",
+                  "variable_value_new": "$activity.definition_activity_01LF8RO7BgkwfpFR5X4XMrDUviRSWg5um.output.response_body$"
+                },
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01LF5aUM9I442zdQfAsjVY92r6IzLqVLQ.output.variable_workflow_01LF6o8ROQ5c2TvkU5KJvHYZ0s5gmKPKB$",
+                  "variable_value_new": "$activity.definition_activity_01LF8RO7BgkwfpFR5X4XMrDUviRSWg5um.output.status_code$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_01LF2TsfxIxceLWHqWmKH4tOZBahepmLu"
+        ]
+      }
+    }
+  ]
+}
